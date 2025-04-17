@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, BarChart3, Building2, Leaf } from "lucide-react"
 import Link from "next/link"
-import { Terminal } from "./terminal"
+import { DashboardPreview } from "@/components/dashboard-preview"
 
 export default function HomePage() {
   return (
@@ -16,7 +16,7 @@ export default function HomePage() {
                 </h1>
                 <p className="mt-3 text-base text-gray-600 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                   Alpaka empowers real estate organizations to manage Scope 3 carbon emissions across property supply
-                  chains, with features for vendor management, emissions tracking, reduction opportunities - all using actual data.
+                  chains, with features for vendor management, emissions tracking, and AI-powered recommendations.
                 </p>
                 <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
                   <Button size="lg" className="text-lg rounded-full bg-[#606C38] hover:bg-[#4a5429] text-white" asChild>
@@ -36,7 +36,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-                <Terminal />
+                <DashboardPreview />
               </div>
             </div>
           </div>
@@ -94,11 +94,12 @@ export default function HomePage() {
             <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl font-['Chau_Philomene_One']">
-                  Ready to reduce your carbon footprint?
+                  Boost profitability through your supply chain
                 </h2>
                 <p className="mt-3 max-w-3xl text-lg text-gray-600">
-                  Join leading real estate organizations using Alpaka to measure, trace, and reduce their Scope 3 carbon
-                  emissions while saving time, reducing risk, and boosting profitability.
+                  Join leading real estate organizations using Alpaka to drive cost savings while reducing Scope 3
+                  emissions. Our data-driven approach identifies high-impact opportunities that improve your bottom line,
+                  with sustainability as a natural outcome.
                 </p>
               </div>
               <div className="mt-8 lg:mt-0 flex justify-center lg:justify-end">

@@ -14,11 +14,11 @@ export function DashboardPreview() {
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
                 <div className="flex items-center justify-between">
                     <div>
-                        <div className="text-white font-chau-philomene-one text-lg">Supply Chain Savings</div>
+                        <div className="text-white font-['Chau_Philomene_One'] text-lg">Supply Chain Savings</div>
                         <div className="text-[#DDA15E] font-bold text-2xl">$1.2M</div>
                     </div>
                     <div>
-                        <div className="text-white font-chau-philomene-one text-lg">Emissions Reduced</div>
+                        <div className="text-white font-['Chau_Philomene_One'] text-lg">Emissions Reduced</div>
                         <div className="text-[#606C38] font-bold text-2xl">24%</div>
                     </div>
                 </div>

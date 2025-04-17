@@ -1,9 +1,15 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata, Viewport } from "next"
-import { Chau_Philomene_One, Plus_Jakarta_Sans } from "next/font/google"
+import { Plus_Jakarta_Sans } from "next/font/google"
 import { UserProvider } from "@/lib/auth"
 import { getUser } from "@/lib/db/queries"
+
+// Load font
+const plusJakartaSans = Plus_Jakarta_Sans({
+    subsets: ["latin"],
+    display: "swap",
+})
 
 export const metadata: Metadata = {
     title: "Alpaka - Carbon Emission Management for Real Estate",
@@ -14,17 +20,6 @@ export const viewport: Viewport = {
     maximumScale: 1,
 }
 
-const chauPhilomeneOne = Chau_Philomene_One({
-    weight: "400",
-    subsets: ["latin"],
-    variable: "--font-chau-philomene-one",
-})
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-    subsets: ["latin"],
-    variable: "--font-plus-jakarta-sans",
-})
-
 export default function RootLayout({
                                        children,
                                    }: {
@@ -33,11 +28,8 @@ export default function RootLayout({
     const userPromise = getUser()
 
     return (
-        <html
-            lang="en"
-            className={`bg-white dark:bg-gray-950 text-black dark:text-white ${plusJakartaSans.variable} ${chauPhilomeneOne.variable}`}
-        >
-        <body className="min-h-[100dvh] bg-gray-50 font-sans">
+        <html lang="en" className="bg-white dark:bg-gray-950 text-black dark:text-white">
+        <body className={`min-h-[100dvh] bg-gray-50 ${plusJakartaSans.className}`}>
         <UserProvider userPromise={userPromise}>{children}</UserProvider>
         </body>
         </html>
