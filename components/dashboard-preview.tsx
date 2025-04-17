@@ -5,7 +5,7 @@ export function DashboardPreview() {
         <div className="relative w-full max-w-md mx-auto rounded-lg shadow-xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-[#606C38]/80 to-[#DDA15E]/80 opacity-20 rounded-lg"></div>
             <Image
-                src="/real-estate-carbon-dashboard.png"
+                src="public/real-estate-carbon-dashboard.png"
                 alt="Alpaka Dashboard Preview"
                 width={500}
                 height={400}
