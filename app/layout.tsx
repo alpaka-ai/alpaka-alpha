@@ -1,35 +1,33 @@
-import './globals.css';
-import type { Metadata, Viewport } from 'next';
-import { Manrope } from 'next/font/google';
-import { UserProvider } from '@/lib/auth';
-import { getUser } from '@/lib/db/queries';
+import type React from "react"
+import "./globals.css"
+import type { Metadata, Viewport } from "next"
+import { Manrope } from "next/font/google"
+import { UserProvider } from "@/lib/auth"
+import { getUser } from "@/lib/db/queries"
 
 export const metadata: Metadata = {
-  title: 'Next.js SaaS Starter',
-  description: 'Get started quickly with Next.js, Postgres, and Stripe.',
-};
+  title: "Alpaka - Carbon Emission Management for Real Estate",
+  description: "Measure, trace, and reduce Scope 3 carbon emissions across your real estate supply chain.",
+}
 
 export const viewport: Viewport = {
   maximumScale: 1,
-};
+}
 
-const manrope = Manrope({ subsets: ['latin'] });
+const manrope = Manrope({ subsets: ["latin"] })
 
 export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
+                                     children,
+                                   }: {
+  children: React.ReactNode
 }) {
-  let userPromise = getUser();
+  const userPromise = getUser()
 
   return (
-    <html
-      lang="en"
-      className={`bg-white dark:bg-gray-950 text-black dark:text-white ${manrope.className}`}
-    >
+      <html lang="en" className={`bg-white dark:bg-gray-950 text-black dark:text-white ${manrope.className}`}>
       <body className="min-h-[100dvh] bg-gray-50">
-        <UserProvider userPromise={userPromise}>{children}</UserProvider>
+      <UserProvider userPromise={userPromise}>{children}</UserProvider>
       </body>
-    </html>
-  );
+      </html>
+  )
 }
