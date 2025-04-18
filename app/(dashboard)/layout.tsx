@@ -13,7 +13,7 @@ import { signOut } from "@/app/(login)/actions"
 import { useRouter, usePathname } from "next/navigation"
 
 function UserMenu() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { userPromise } = useUser()
   const user = use(userPromise)
   const router = useRouter()
@@ -38,9 +38,9 @@ function UserMenu() {
   }
 
   return (
-    <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+    <DropdownMenu open={isMenuOpen} onOpenChange={setIsMobileMenuOpen}>
       <DropdownMenuTrigger>
-        <Avatar className="cursor-pointer size-9">
+        <Avatar className="cursor-pointer h-9 w-9">
           <AvatarImage alt={user.name || ""} />
           <AvatarFallback>
             {user.email

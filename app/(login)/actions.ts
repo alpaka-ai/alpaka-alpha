@@ -117,7 +117,11 @@ export const signUp = validatedAction(signUpSchema, async (data) => {
     })
 
     // Set session
-    await setSession(user)
+    await setSession({
+      id: user.id,
+      email: user.email,
+      name: user.name || "",
+    })
 
     // Redirect
     if (redirectPath) {
