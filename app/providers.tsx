@@ -1,15 +1,9 @@
 "use client"
 
-import type { ReactNode } from "react"
-import { UserProvider } from "@/lib/auth/index"
-import type { User } from "@/lib/db/schema"
+import type React from "react"
 
-export function Providers({
-  children,
-  userPromise,
-}: {
-  children: ReactNode
-  userPromise?: Promise<User | null>
-}) {
+import { UserProvider } from "@/lib/auth/index"
+
+export function Providers({ children, userPromise }: { children: React.ReactNode; userPromise: Promise<any> }) {
   return <UserProvider userPromise={userPromise}>{children}</UserProvider>
 }
