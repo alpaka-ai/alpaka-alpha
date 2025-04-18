@@ -71,7 +71,7 @@ function UserMenu() {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer">
-            <Link href="/dashboard" className="flex w-full items-center">
+            <Link href="/dashboard/team" className="flex w-full items-center">
               <Users className="mr-2 h-4 w-4" />
               <span>Team</span>
             </Link>
@@ -130,7 +130,8 @@ function Sidebar() {
             isActive("/dashboard") &&
             !pathname.includes("/dashboard/general") &&
             !pathname.includes("/dashboard/activity") &&
-            !pathname.includes("/dashboard/security")
+            !pathname.includes("/dashboard/security") &&
+            !pathname.includes("/dashboard/team")
               ? "bg-[#606C38] text-white"
               : "text-gray-700 hover:bg-[#606C38]/10"
           }`}
@@ -216,7 +217,8 @@ function Header() {
                 isActive("/dashboard") &&
                 !pathname.includes("/dashboard/general") &&
                 !pathname.includes("/dashboard/activity") &&
-                !pathname.includes("/dashboard/security")
+                !pathname.includes("/dashboard/security") &&
+                !pathname.includes("/dashboard/team")
                   ? "bg-[#606C38] text-white"
                   : "text-gray-700 hover:bg-[#606C38]/10"
               }`}

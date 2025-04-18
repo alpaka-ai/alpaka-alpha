@@ -54,7 +54,7 @@ export function InviteTeamMember() {
           {inviteState?.success && <p className="text-green-500">{inviteState.success}</p>}
           <Button
             type="submit"
-            className="bg-orange-500 hover:bg-orange-600 text-white"
+            className="bg-[#606C38] hover:bg-[#4d5a2d] text-white"
             disabled={isInvitePending || !isOwner}
           >
             {isInvitePending ? (
