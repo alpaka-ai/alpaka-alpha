@@ -27,7 +27,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
         <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" />
       </head>
-      <body className={notoSans.className}>{children}</body>
+      <body className={notoSans.className}>
+        <div className="flex flex-col min-h-screen">{children}</div>
+      </body>
     </html>
   )
 }
