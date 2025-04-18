@@ -1,5 +1,6 @@
 import type React from "react"
 import { getUser } from "@/lib/db/queries"
+import { Providers } from "../providers"
 import DashboardLayout from "./layout"
 
 export default async function DashboardLayoutWrapper({
@@ -17,5 +18,9 @@ export default async function DashboardLayoutWrapper({
     userPromise = Promise.resolve(null)
   }
 
-  return <DashboardLayout userPromise={userPromise}>{children}</DashboardLayout>
+  return (
+    <Providers userPromise={userPromise}>
+      <DashboardLayout>{children}</DashboardLayout>
+    </Providers>
+  )
 }

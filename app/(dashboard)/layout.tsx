@@ -42,18 +42,19 @@ function UserMenu() {
     router.push("/")
   }
 
+  // Add a fallback for when user data is loading or not available
   if (!user) {
-    return null
+    return <div className="h-9 w-9 rounded-full bg-gray-200 animate-pulse"></div>
   }
 
   return (
     <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
       <DropdownMenuTrigger>
-        <CustomAvatar name={user?.name || ""} email={user?.email || ""} size="md" showLeafIcon={true} />
+        <CustomAvatar name={user.name || ""} email={user.email || ""} size="md" showLeafIcon={true} />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <div className="flex flex-col space-y-1 p-2">
-          <p className="text-sm font-medium">{user.name || "User"}</p>
+          <p className="text-sm font-medium">{user.name || user.email.split("@")[0]}</p>
           <p className="text-xs text-muted-foreground">{user.email}</p>
         </div>
         <DropdownMenuSeparator />

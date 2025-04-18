@@ -11,10 +11,13 @@ export default function DashboardPage() {
   const { userPromise } = useUser()
   const user = use(userPromise)
 
+  // Get a display name that prioritizes the user's name, then falls back to email username
+  const displayName = user?.name || (user?.email ? user.email.split("@")[0] : "User")
+
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-[#606C38]">Welcome back, {user?.name || "User"}</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-[#606C38]">Welcome back, {displayName}</h1>
         <p className="text-gray-500 mt-1">Here's an overview of your carbon emissions management</p>
       </div>
 
