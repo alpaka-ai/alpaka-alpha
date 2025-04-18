@@ -1,5 +1,7 @@
 "use client"
 
+import { DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+
 import type React from "react"
 
 import Link from "next/link"
@@ -10,14 +12,13 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
   DropdownMenuSeparator,
   DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useUser } from "@/lib/auth/index"
 import { signOut } from "@/app/(login)/actions"
 import { useRouter, usePathname } from "next/navigation"
+import { CustomAvatar } from "@/components/ui/custom-avatar"
 
 function UserMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -47,15 +48,7 @@ function UserMenu() {
   return (
     <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
       <DropdownMenuTrigger>
-        <Avatar className="cursor-pointer h-9 w-9">
-          <AvatarImage alt={user.name || ""} />
-          <AvatarFallback>
-            {user.email
-              .split(" ")
-              .map((n) => n[0])
-              .join("")}
-          </AvatarFallback>
-        </Avatar>
+        <CustomAvatar name={user?.name || ""} email={user?.email || ""} size="md" showLeafIcon={true} />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <div className="flex flex-col space-y-1 p-2">

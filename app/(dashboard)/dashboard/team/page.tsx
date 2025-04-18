@@ -2,13 +2,13 @@
 
 import { use } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { useUser } from "@/lib/auth/index"
 import { InviteTeamMember } from "../invite-team"
 import { removeTeamMember } from "@/app/(login)/actions"
 import { useActionState } from "react"
 import type { User } from "@/lib/db/schema"
+import { CustomAvatar } from "@/components/ui/custom-avatar"
 
 type ActionState = {
   error?: string
@@ -66,18 +66,12 @@ export default function TeamPage() {
             {teamMembers.map((member, index) => (
               <li key={member.id} className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <Avatar>
-                    <AvatarImage
-                      src={`/placeholder-32px.png?height=32&width=32`}
-                      alt={getUserDisplayName(member.user)}
-                    />
-                    <AvatarFallback>
-                      {getUserDisplayName(member.user)
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
+                  <CustomAvatar
+                    name={getUserDisplayName(member.user)}
+                    email={member.user.email}
+                    size="md"
+                    showLeafIcon={member.role === "owner"}
+                  />
                   <div>
                     <p className="font-medium">{getUserDisplayName(member.user)}</p>
                     <p className="text-sm text-muted-foreground capitalize">{member.role}</p>
