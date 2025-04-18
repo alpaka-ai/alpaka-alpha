@@ -6,23 +6,9 @@ import { LandingHeader } from "@/components/landing-header"
 import { LandingFooter } from "@/components/landing-footer"
 
 export default function LandingPage() {
-  // Helper function to get the app URL
-  const getAppUrl = (path: string) => {
-    // In preview environments, use relative URLs
-    // In production, use the subdomain
-    const isPreview = process.env.VERCEL_ENV === "preview" || !process.env.VERCEL_ENV
-
-    if (isPreview) {
-      return path // Use relative URLs in preview
-    } else {
-      // In production, use app.alpaka.ai
-      return `https://app.alpaka.ai${path}`
-    }
-  }
-
   return (
     <div className="flex flex-col min-h-screen">
-      <LandingHeader getAppUrl={getAppUrl} />
+      <LandingHeader />
 
       {/* Hero Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-[#FEFAE0]">
@@ -38,10 +24,10 @@ export default function LandingPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
-                  <a href={getAppUrl("/sign-in")}>Sign In</a>
+                  <a href="/sign-in">Sign In</a>
                 </Button>
                 <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
-                  <a href={getAppUrl("/sign-up")}>Create Account</a>
+                  <a href="/sign-up">Create Account</a>
                 </Button>
               </div>
             </div>
@@ -130,7 +116,7 @@ export default function LandingPage() {
               </ul>
               <div className="pt-4">
                 <Button asChild className="bg-[#DDA15E] hover:bg-[#c48f53] text-white">
-                  <a href={getAppUrl("/sign-up")}>Start Reducing Emissions Today</a>
+                  <a href="/sign-up">Start Reducing Emissions Today</a>
                 </Button>
               </div>
             </div>
@@ -190,7 +176,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
-              <a href={getAppUrl("/sign-up")}>Create Your Account</a>
+              <a href="/sign-up">Create Your Account</a>
             </Button>
             <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
               <a href="/contact">Contact Sales</a>
@@ -199,7 +185,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <LandingFooter getAppUrl={getAppUrl} />
+      <LandingFooter />
     </div>
   )
 }

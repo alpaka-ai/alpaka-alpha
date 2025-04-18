@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Facebook, Twitter, Linkedin, Mail, Phone } from "lucide-react"
 
-export function LandingFooter({ getAppUrl }: { getAppUrl: (path: string) => string }) {
+export function LandingFooter() {
   return (
     <footer className="w-full bg-[#606C38] text-white">
       <div className="container px-4 md:px-6 py-12">
@@ -33,31 +33,22 @@ export function LandingFooter({ getAppUrl }: { getAppUrl: (path: string) => stri
             <h3 className="text-lg font-bold mb-4 font-heading">Platform</h3>
             <ul className="space-y-2">
               <li>
-                <a href={getAppUrl("/dashboard/vendors")} className="text-sm hover:text-[#DDA15E] transition-colors">
+                <a href="/dashboard/vendors" className="text-sm hover:text-[#DDA15E] transition-colors">
                   Vendor Management
                 </a>
               </li>
               <li>
-                <a
-                  href={getAppUrl("/dashboard/reduction-opportunities")}
-                  className="text-sm hover:text-[#DDA15E] transition-colors"
-                >
+                <a href="/dashboard/reduction-opportunities" className="text-sm hover:text-[#DDA15E] transition-colors">
                   Reduction Opportunities
                 </a>
               </li>
               <li>
-                <a
-                  href={getAppUrl("/dashboard/project-executions")}
-                  className="text-sm hover:text-[#DDA15E] transition-colors"
-                >
+                <a href="/dashboard/project-executions" className="text-sm hover:text-[#DDA15E] transition-colors">
                   Project Executions
                 </a>
               </li>
               <li>
-                <a
-                  href={getAppUrl("/dashboard/vendor-engagements")}
-                  className="text-sm hover:text-[#DDA15E] transition-colors"
-                >
+                <a href="/dashboard/vendor-engagements" className="text-sm hover:text-[#DDA15E] transition-colors">
                   Vendor Engagements
                 </a>
               </li>
