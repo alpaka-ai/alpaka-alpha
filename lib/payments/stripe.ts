@@ -7,6 +7,12 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-03-31.basil",
 })
 
+// Helper function to get the base URL
+const getBaseUrl = () => {
+  // Use the existing BASE_URL environment variable
+  return process.env.BASE_URL || "http://localhost:3000"
+}
+
 export async function createCheckoutSession({
   team,
   priceId,
@@ -20,6 +26,8 @@ export async function createCheckoutSession({
     redirect(`/sign-up?redirect=checkout&priceId=${priceId}`)
   }
 
+  const baseUrl = getBaseUrl()
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: [
@@ -29,8 +37,8 @@ export async function createCheckoutSession({
       },
     ],
     mode: "subscription",
-    success_url: `${process.env.BASE_URL}/api/stripe/checkout?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.BASE_URL}/pricing`,
+    success_url: `${baseUrl}/api/stripe/checkout?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${baseUrl}/pricing`,
     customer: team.stripeCustomerId || undefined,
     client_reference_id: user.id.toString(),
     allow_promotion_codes: true,
@@ -46,6 +54,8 @@ export async function createCustomerPortalSession(team: Team) {
   if (!team.stripeCustomerId || !team.stripeProductId) {
     redirect("/pricing")
   }
+
+  const baseUrl = getBaseUrl()
 
   let configuration: Stripe.BillingPortal.Configuration
   const configurations = await stripe.billingPortal.configurations.list()
@@ -96,7 +106,7 @@ export async function createCustomerPortalSession(team: Team) {
 
   return stripe.billingPortal.sessions.create({
     customer: team.stripeCustomerId,
-    return_url: `${process.env.BASE_URL}/dashboard`,
+    return_url: `${baseUrl}/dashboard`,
     configuration: configuration.id,
   })
 }

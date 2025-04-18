@@ -1,4 +1,3 @@
-import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -7,9 +6,19 @@ import { LandingHeader } from "@/components/landing-header"
 import { LandingFooter } from "@/components/landing-footer"
 
 export default function LandingPage() {
+  // Helper function to get the app URL
+  const getAppUrl = (path: string) => {
+    // In production, use app.alpaka.ai
+    // In development, use localhost:3000
+    const baseUrl =
+      process.env.NODE_ENV === "production" ? "https://app.alpaka.ai" : process.env.BASE_URL || "http://localhost:3000"
+
+    return `${baseUrl}${path}`
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
-      <LandingHeader />
+      <LandingHeader getAppUrl={getAppUrl} />
 
       {/* Hero Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-[#FEFAE0]">
@@ -25,10 +34,10 @@ export default function LandingPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
-                  <Link href="/sign-in">Sign In</Link>
+                  <a href={getAppUrl("/sign-in")}>Sign In</a>
                 </Button>
                 <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
-                  <Link href="/sign-up">Create Account</Link>
+                  <a href={getAppUrl("/sign-up")}>Create Account</a>
                 </Button>
               </div>
             </div>
@@ -117,7 +126,7 @@ export default function LandingPage() {
               </ul>
               <div className="pt-4">
                 <Button asChild className="bg-[#DDA15E] hover:bg-[#c48f53] text-white">
-                  <Link href="/sign-up">Start Reducing Emissions Today</Link>
+                  <a href={getAppUrl("/sign-up")}>Start Reducing Emissions Today</a>
                 </Button>
               </div>
             </div>
@@ -177,16 +186,16 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
-              <Link href="/sign-up">Create Your Account</Link>
+              <a href={getAppUrl("/sign-up")}>Create Your Account</a>
             </Button>
             <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
-              <Link href="/contact">Contact Sales</Link>
+              <a href="/contact">Contact Sales</a>
             </Button>
           </div>
         </div>
       </section>
 
-      <LandingFooter />
+      <LandingFooter getAppUrl={getAppUrl} />
     </div>
   )
 }

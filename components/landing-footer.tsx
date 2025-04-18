@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Facebook, Twitter, Linkedin, Mail, Phone } from "lucide-react"
 
-export function LandingFooter() {
+export function LandingFooter({ getAppUrl }: { getAppUrl: (path: string) => string }) {
   return (
     <footer className="w-full bg-[#606C38] text-white">
       <div className="container px-4 md:px-6 py-12">
@@ -33,24 +33,33 @@ export function LandingFooter() {
             <h3 className="text-lg font-bold mb-4 font-heading">Platform</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm hover:text-[#DDA15E] transition-colors">
+                <a href={getAppUrl("/dashboard/vendors")} className="text-sm hover:text-[#DDA15E] transition-colors">
                   Vendor Management
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-sm hover:text-[#DDA15E] transition-colors">
-                  Emissions Tracking
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-[#DDA15E] transition-colors">
+                <a
+                  href={getAppUrl("/dashboard/reduction-opportunities")}
+                  className="text-sm hover:text-[#DDA15E] transition-colors"
+                >
                   Reduction Opportunities
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#" className="text-sm hover:text-[#DDA15E] transition-colors">
-                  Reporting & Analytics
-                </Link>
+                <a
+                  href={getAppUrl("/dashboard/project-executions")}
+                  className="text-sm hover:text-[#DDA15E] transition-colors"
+                >
+                  Project Executions
+                </a>
+              </li>
+              <li>
+                <a
+                  href={getAppUrl("/dashboard/vendor-engagements")}
+                  className="text-sm hover:text-[#DDA15E] transition-colors"
+                >
+                  Vendor Engagements
+                </a>
               </li>
             </ul>
           </div>
@@ -58,22 +67,22 @@ export function LandingFooter() {
             <h3 className="text-lg font-bold mb-4 font-heading">Company</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm hover:text-[#DDA15E] transition-colors">
+                <Link href="/about" className="text-sm hover:text-[#DDA15E] transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm hover:text-[#DDA15E] transition-colors">
+                <Link href="/careers" className="text-sm hover:text-[#DDA15E] transition-colors">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm hover:text-[#DDA15E] transition-colors">
+                <Link href="/blog" className="text-sm hover:text-[#DDA15E] transition-colors">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm hover:text-[#DDA15E] transition-colors">
+                <Link href="/press" className="text-sm hover:text-[#DDA15E] transition-colors">
                   Press
                 </Link>
               </li>
