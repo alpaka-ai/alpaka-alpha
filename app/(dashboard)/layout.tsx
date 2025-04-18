@@ -80,7 +80,7 @@ function Sidebar() {
   return (
     <aside className="hidden md:flex flex-col w-64 bg-[#FEFAE0] border-r border-gray-200 h-screen">
       <div className="p-4">
-        <Link href="/" className="flex items-center">
+        <Link href="/dashboard" className="flex items-center">
           <span className="text-xl font-bold text-[#606C38] font-heading">Alpaka</span>
         </Link>
       </div>
@@ -145,7 +145,7 @@ function Header() {
 
   return (
     <header className="border-b border-gray-200 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-end items-center">
         <div className="flex items-center">
           <button
             className="md:hidden mr-2"
@@ -154,9 +154,7 @@ function Header() {
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
-          <Link href="/" className="flex items-center">
-            <span className="text-xl font-bold text-[#606C38] font-heading">Alpaka</span>
-          </Link>
+          {/* Removed the redundant logo from here */}
         </div>
         <div className="flex items-center space-x-4">
           <Suspense fallback={<div className="h-9" />}>
