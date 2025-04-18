@@ -6,7 +6,7 @@ export async function GET() {
     const user = await getUser()
     return NextResponse.json(user)
   } catch (error) {
-    console.error("Error getting user:", error)
-    return NextResponse.json(null)
+    console.error("Error fetching user:", error)
+    return NextResponse.json(null, { status: 401 })
   }
 }
