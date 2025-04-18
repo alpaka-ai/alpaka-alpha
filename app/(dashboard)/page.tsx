@@ -1,118 +1,186 @@
-import { Button } from "@/components/ui/button"
-import { ArrowRight, BarChart3, Building2, Leaf } from "lucide-react"
 import Link from "next/link"
-import { DashboardPreview } from "@/components/dashboard-preview"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { ChevronRight, BarChart3, Users, Lightbulb } from "lucide-react"
 
-export default function HomePage() {
+export default function LandingPage() {
   return (
-      <main>
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-              <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl font-['Chau_Philomene_One']">
-                  Measure, Trace, Reduce
-                  <span className="block text-[#606C38]">Carbon Emissions</span>
-                </h1>
-                <p className="mt-3 text-base text-gray-600 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                  Alpaka empowers real estate organizations to manage Scope 3 carbon emissions across property supply
-                  chains, with features for vendor management, emissions tracking, and AI-powered recommendations.
-                </p>
-                <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="text-lg rounded-full bg-[#606C38] hover:bg-[#4a5429] text-white" asChild>
-                    <Link href="/sign-in">
-                      Sign In
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                  </Button>
-                  <Button
-                      size="lg"
-                      variant="outline"
-                      className="text-lg rounded-full border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10"
-                      asChild
-                  >
-                    <Link href="/sign-up">Create Account</Link>
-                  </Button>
-                </div>
-              </div>
-              <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-                <DashboardPreview />
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-[#FEFAE0]">
+        <div className="container px-4 md:px-6">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-[#606C38] font-heading">
+                Measure, Trace, Reduce Carbon Emissions
+              </h1>
+              <p className="text-lg text-gray-700 md:text-xl">
+                Alpaka helps real estate organizations manage Scope 3 emissions across their property supply chains with
+                powerful vendor management, emissions tracking, and data-driven reduction recommendations.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
+                  <Link href="/auth/signin">Sign In</Link>
+                </Button>
+                <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
+                  <Link href="/auth/signup">Create Account</Link>
+                </Button>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-[#FEFAE0] w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="lg:grid lg:grid-cols-3 lg:gap-8">
-              <div>
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#606C38] text-white">
-                  <Building2 className="h-6 w-6" />
-                </div>
-                <div className="mt-5">
-                  <h2 className="text-lg font-medium text-gray-900 font-['Chau_Philomene_One']">Vendor Management</h2>
-                  <p className="mt-2 text-base text-gray-600">
-                    Manage vendor data, track data syncing status, and control user access to vendor information across
-                    your real estate portfolio.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-10 lg:mt-0">
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#606C38] text-white">
-                  <BarChart3 className="h-6 w-6" />
-                </div>
-                <div className="mt-5">
-                  <h2 className="text-lg font-medium text-gray-900 font-['Chau_Philomene_One']">Emissions Tracking</h2>
-                  <p className="mt-2 text-base text-gray-600">
-                    Gain deep visibility into your properties' carbon footprint with traceable, tamper-proof emissions
-                    data for every step in your value chain.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-10 lg:mt-0">
-                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#606C38] text-white">
-                  <Leaf className="h-6 w-6" />
-                </div>
-                <div className="mt-5">
-                  <h2 className="text-lg font-medium text-gray-900 font-['Chau_Philomene_One']">
-                    Reduction Opportunities
-                  </h2>
-                  <p className="mt-2 text-base text-gray-600">
-                    Receive AI-powered recommendations to drive carbon reductions in your supply chain, with estimated
-                    costs and potential savings.
-                  </p>
-                </div>
-              </div>
+            <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
+              <Image
+                src="/carbon-dashboard-overview.png"
+                alt="Alpaka Dashboard Preview"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl font-['Chau_Philomene_One']">
-                  Boost profitability through your supply chain
-                </h2>
-                <p className="mt-3 max-w-3xl text-lg text-gray-600">
-                  Join leading real estate organizations using Alpaka to drive cost savings while reducing Scope 3
-                  emissions. Our data-driven approach identifies high-impact opportunities that improve your bottom line,
-                  with sustainability as a natural outcome.
-                </p>
+      {/* Features Section */}
+      <section className="w-full py-12 md:py-24 bg-white">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-[#606C38] mb-4 font-heading">Comprehensive Carbon Management</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              Our platform provides end-to-end solutions for managing your organization's carbon footprint
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="p-6 border-[#FEFAE0] hover:border-[#DDA15E] transition-colors">
+              <div className="h-12 w-12 rounded-full bg-[#606C38]/10 flex items-center justify-center mb-4">
+                <Users className="h-6 w-6 text-[#606C38]" />
               </div>
-              <div className="mt-8 lg:mt-0 flex justify-center lg:justify-end">
-                <Button size="lg" className="text-lg rounded-full bg-[#DDA15E] hover:bg-[#c48a4a] text-white" asChild>
-                  <Link href="/sign-up">
-                    Get Started
-                    <ArrowRight className="ml-3 h-6 w-6" />
-                  </Link>
+              <h3 className="text-xl font-bold mb-2 text-[#606C38] font-heading">Vendor Management</h3>
+              <p className="text-gray-700">
+                Centralize and manage vendor data across your entire real estate portfolio with our intuitive interface.
+              </p>
+            </Card>
+            <Card className="p-6 border-[#FEFAE0] hover:border-[#DDA15E] transition-colors">
+              <div className="h-12 w-12 rounded-full bg-[#606C38]/10 flex items-center justify-center mb-4">
+                <BarChart3 className="h-6 w-6 text-[#606C38]" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-[#606C38] font-heading">Emissions Tracking</h3>
+              <p className="text-gray-700">
+                Gain complete visibility into your carbon footprint with traceable, verifiable emissions data.
+              </p>
+            </Card>
+            <Card className="p-6 border-[#FEFAE0] hover:border-[#DDA15E] transition-colors">
+              <div className="h-12 w-12 rounded-full bg-[#606C38]/10 flex items-center justify-center mb-4">
+                <Lightbulb className="h-6 w-6 text-[#606C38]" />
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-[#606C38] font-heading">Reduction Opportunities</h3>
+              <p className="text-gray-700">
+                Leverage smart, data-driven recommendations to identify and implement carbon reduction strategies.
+              </p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Value Proposition Section */}
+      <section className="w-full py-12 md:py-24 bg-[#606C38]/5">
+        <div className="container px-4 md:px-6">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
+              <Image src="/carbon-reduction-analysis.png" alt="Cost Savings Analysis" fill className="object-cover" />
+            </div>
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold text-[#606C38] font-heading">
+                Economic Benefits with Sustainability Outcomes
+              </h2>
+              <p className="text-lg text-gray-700">
+                Alpaka doesn't just help you meet sustainability goals—it drives real economic value. Our customers
+                typically see:
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2">
+                  <ChevronRight className="h-5 w-5 text-[#DDA15E] shrink-0 mt-0.5" />
+                  <span>15-20% reduction in operational costs through optimized vendor selection</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ChevronRight className="h-5 w-5 text-[#DDA15E] shrink-0 mt-0.5" />
+                  <span>30% improvement in emissions data accuracy and reporting efficiency</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ChevronRight className="h-5 w-5 text-[#DDA15E] shrink-0 mt-0.5" />
+                  <span>Significant competitive advantage in markets with increasing ESG requirements</span>
+                </li>
+              </ul>
+              <div className="pt-4">
+                <Button asChild className="bg-[#DDA15E] hover:bg-[#c48f53] text-white">
+                  <Link href="/auth/signup">Start Reducing Emissions Today</Link>
                 </Button>
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="w-full py-12 md:py-24 bg-white">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-[#606C38] mb-4 font-heading">
+              Trusted by Leading Real Estate Organizations
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="p-6 border-[#FEFAE0]">
+              <p className="italic text-gray-700 mb-4">
+                "Alpaka has transformed how we manage our Scope 3 emissions. The platform's intuitive interface and
+                powerful analytics have helped us identify significant cost-saving opportunities while reducing our
+                carbon footprint."
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full bg-[#606C38]/10"></div>
+                <div>
+                  <p className="font-bold text-[#606C38]">Sarah Johnson</p>
+                  <p className="text-sm text-gray-600">Sustainability Director, Global Properties Inc.</p>
+                </div>
+              </div>
+            </Card>
+            <Card className="p-6 border-[#FEFAE0]">
+              <p className="italic text-gray-700 mb-4">
+                "The vendor management capabilities alone have saved us countless hours of manual work. The emissions
+                tracking and reduction recommendations provide actionable insights that deliver real business value."
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="h-12 w-12 rounded-full bg-[#606C38]/10"></div>
+                <div>
+                  <p className="font-bold text-[#606C38]">Michael Chen</p>
+                  <p className="text-sm text-gray-600">COO, Urban Development Partners</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="w-full py-12 md:py-24 bg-[#FEFAE0]">
+        <div className="container px-4 md:px-6 text-center">
+          <h2 className="text-3xl font-bold text-[#606C38] mb-4 font-heading">
+            Ready to Transform Your Carbon Management?
+          </h2>
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-8">
+            Join the growing number of real estate organizations using Alpaka to drive economic value while achieving
+            sustainability goals.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
+              <Link href="/auth/signup">Create Your Account</Link>
+            </Button>
+            <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
+              <Link href="/contact">Contact Sales</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

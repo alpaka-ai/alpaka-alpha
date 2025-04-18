@@ -1,37 +1,26 @@
 import type React from "react"
+import type { Metadata } from "next"
+import { chauPhilomeneOne, notoSans } from "./fonts"
 import "./globals.css"
-import type { Metadata, Viewport } from "next"
-import { Plus_Jakarta_Sans } from "next/font/google"
-import { UserProvider } from "@/lib/auth"
-import { getUser } from "@/lib/db/queries"
-
-// Load font
-const plusJakartaSans = Plus_Jakarta_Sans({
-    subsets: ["latin"],
-    display: "swap",
-})
 
 export const metadata: Metadata = {
-    title: "Alpaka - Carbon Emission Management for Real Estate",
-    description: "Measure, trace, and reduce Scope 3 carbon emissions across your real estate supply chain.",
-}
-
-export const viewport: Viewport = {
-    maximumScale: 1,
+  title: "Alpaka - Carbon Emission Management",
+  description: "Measure, trace, and reduce carbon emissions across your real estate portfolio",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.svg",
+  },
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
-                                       children,
-                                   }: {
-    children: React.ReactNode
-}) {
-    const userPromise = getUser()
-
-    return (
-        <html lang="en" className="bg-white dark:bg-gray-950 text-black dark:text-white">
-        <body className={`min-h-[100dvh] bg-gray-50 ${plusJakartaSans.className}`}>
-        <UserProvider userPromise={userPromise}>{children}</UserProvider>
-        </body>
-        </html>
-    )
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" className={`${chauPhilomeneOne.variable} ${notoSans.variable}`}>
+      <body className={notoSans.className}>{children}</body>
+    </html>
+  )
 }
