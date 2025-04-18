@@ -7,7 +7,19 @@ import type React from "react"
 import Link from "next/link"
 import { use, useState, Suspense } from "react"
 import { Button } from "@/components/ui/button"
-import { Home, LogOut, BarChart2, Users, Target, Lightbulb, Menu, X, Settings, Shield, Activity } from "lucide-react"
+import {
+  Home,
+  LogOut,
+  MessageSquare,
+  Lightbulb,
+  Menu,
+  X,
+  Settings,
+  Shield,
+  Activity,
+  Users,
+  ClipboardList,
+} from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -142,31 +154,37 @@ function Sidebar() {
           <span>Vendors</span>
         </Link>
         <Link
-          href="/dashboard/emissions"
+          href="/dashboard/reduction-opportunities"
           className={`flex items-center px-3 py-2 rounded-md ${
-            isActive("/dashboard/emissions") ? "bg-[#606C38] text-white" : "text-gray-700 hover:bg-[#606C38]/10"
-          }`}
-        >
-          <BarChart2 className="mr-3 h-5 w-5" />
-          <span>Emissions</span>
-        </Link>
-        <Link
-          href="/dashboard/targets"
-          className={`flex items-center px-3 py-2 rounded-md ${
-            isActive("/dashboard/targets") ? "bg-[#606C38] text-white" : "text-gray-700 hover:bg-[#606C38]/10"
-          }`}
-        >
-          <Target className="mr-3 h-5 w-5" />
-          <span>Reduction Targets</span>
-        </Link>
-        <Link
-          href="/dashboard/initiatives"
-          className={`flex items-center px-3 py-2 rounded-md ${
-            isActive("/dashboard/initiatives") ? "bg-[#606C38] text-white" : "text-gray-700 hover:bg-[#606C38]/10"
+            isActive("/dashboard/reduction-opportunities")
+              ? "bg-[#606C38] text-white"
+              : "text-gray-700 hover:bg-[#606C38]/10"
           }`}
         >
           <Lightbulb className="mr-3 h-5 w-5" />
-          <span>Initiatives</span>
+          <span>Reduction Opportunities</span>
+        </Link>
+        <Link
+          href="/dashboard/project-executions"
+          className={`flex items-center px-3 py-2 rounded-md ${
+            isActive("/dashboard/project-executions")
+              ? "bg-[#606C38] text-white"
+              : "text-gray-700 hover:bg-[#606C38]/10"
+          }`}
+        >
+          <ClipboardList className="mr-3 h-5 w-5" />
+          <span>Project Executions</span>
+        </Link>
+        <Link
+          href="/dashboard/vendor-engagements"
+          className={`flex items-center px-3 py-2 rounded-md ${
+            isActive("/dashboard/vendor-engagements")
+              ? "bg-[#606C38] text-white"
+              : "text-gray-700 hover:bg-[#606C38]/10"
+          }`}
+        >
+          <MessageSquare className="mr-3 h-5 w-5" />
+          <span>Vendor Engagements</span>
         </Link>
       </nav>
     </aside>
@@ -231,34 +249,40 @@ function Header() {
               <span>Vendors</span>
             </Link>
             <Link
-              href="/dashboard/emissions"
+              href="/dashboard/reduction-opportunities"
               className={`flex items-center px-3 py-2 rounded-md ${
-                isActive("/dashboard/emissions") ? "bg-[#606C38] text-white" : "text-gray-700 hover:bg-[#606C38]/10"
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <BarChart2 className="mr-3 h-5 w-5" />
-              <span>Emissions</span>
-            </Link>
-            <Link
-              href="/dashboard/targets"
-              className={`flex items-center px-3 py-2 rounded-md ${
-                isActive("/dashboard/targets") ? "bg-[#606C38] text-white" : "text-gray-700 hover:bg-[#606C38]/10"
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <Target className="mr-3 h-5 w-5" />
-              <span>Reduction Targets</span>
-            </Link>
-            <Link
-              href="/dashboard/initiatives"
-              className={`flex items-center px-3 py-2 rounded-md ${
-                isActive("/dashboard/initiatives") ? "bg-[#606C38] text-white" : "text-gray-700 hover:bg-[#606C38]/10"
+                isActive("/dashboard/reduction-opportunities")
+                  ? "bg-[#606C38] text-white"
+                  : "text-gray-700 hover:bg-[#606C38]/10"
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Lightbulb className="mr-3 h-5 w-5" />
-              <span>Initiatives</span>
+              <span>Reduction Opportunities</span>
+            </Link>
+            <Link
+              href="/dashboard/project-executions"
+              className={`flex items-center px-3 py-2 rounded-md ${
+                isActive("/dashboard/project-executions")
+                  ? "bg-[#606C38] text-white"
+                  : "text-gray-700 hover:bg-[#606C38]/10"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <ClipboardList className="mr-3 h-5 w-5" />
+              <span>Project Executions</span>
+            </Link>
+            <Link
+              href="/dashboard/vendor-engagements"
+              className={`flex items-center px-3 py-2 rounded-md ${
+                isActive("/dashboard/vendor-engagements")
+                  ? "bg-[#606C38] text-white"
+                  : "text-gray-700 hover:bg-[#606C38]/10"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <MessageSquare className="mr-3 h-5 w-5" />
+              <span>Vendor Engagements</span>
             </Link>
           </nav>
         </div>
