@@ -30,10 +30,10 @@ export function LandingHeader() {
         </nav>
         <div className="hidden md:flex gap-4">
           <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
-            <Link href="/auth/signin">Sign In</Link>
+            <Link href="/sign-in">Sign In</Link>
           </Button>
           <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
-            <Link href="/auth/signup">Create Account</Link>
+            <Link href="/sign-up">Create Account</Link>
           </Button>
         </div>
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
@@ -61,10 +61,10 @@ export function LandingHeader() {
                 variant="outline"
                 className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10 w-full"
               >
-                <Link href="/auth/signin">Sign In</Link>
+                <Link href="/sign-in">Sign In</Link>
               </Button>
               <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white w-full">
-                <Link href="/auth/signup">Create Account</Link>
+                <Link href="/sign-up">Create Account</Link>
               </Button>
             </div>
           </nav>

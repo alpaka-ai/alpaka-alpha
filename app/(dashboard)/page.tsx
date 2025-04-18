@@ -21,10 +21,10 @@ export default function LandingPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
-                  <Link href="/auth/signin">Sign In</Link>
+                  <Link href="/sign-in">Sign In</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
-                  <Link href="/auth/signup">Create Account</Link>
+                  <Link href="/sign-up">Create Account</Link>
                 </Button>
               </div>
             </div>
@@ -113,7 +113,7 @@ export default function LandingPage() {
               </ul>
               <div className="pt-4">
                 <Button asChild className="bg-[#DDA15E] hover:bg-[#c48f53] text-white">
-                  <Link href="/auth/signup">Start Reducing Emissions Today</Link>
+                  <Link href="/sign-up">Start Reducing Emissions Today</Link>
                 </Button>
               </div>
             </div>
@@ -173,7 +173,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
-              <Link href="/auth/signup">Create Your Account</Link>
+              <Link href="/sign-up">Create Your Account</Link>
             </Button>
             <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
               <Link href="/contact">Contact Sales</Link>
