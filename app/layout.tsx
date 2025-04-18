@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { chauPhilomeneOne, notoSans } from "./fonts"
 import "./globals.css"
 import { Providers } from "./providers"
-import { getUser } from "@/lib/db/queries"
 
 export const metadata: Metadata = {
   title: "Alpaka - Carbon Emission Management",
@@ -24,6 +23,8 @@ export default async function RootLayout({
   let userPromise: Promise<any> = Promise.resolve(null)
 
   try {
+    // Import getUser dynamically to avoid initialization issues
+    const { getUser } = await import("@/lib/db/queries")
     userPromise = getUser()
   } catch (error) {
     console.error("Error getting user:", error)

@@ -1,25 +1,30 @@
 import { NextResponse } from "next/server"
-import postgres from "postgres"
+import { testConnection } from "@/lib/db/drizzle"
 
 export async function GET() {
   try {
-    // Create a simple postgres client for testing
-    const sql = postgres(process.env.POSTGRES_URL!, {
-      max: 1,
-      ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
-    })
+    console.log("Testing database connection...")
+    const result = await testConnection()
 
-    // Try a simple query
-    const result = await sql`SELECT 1 as test`
-
-    // Close the connection
-    await sql.end()
-
-    return NextResponse.json({
-      success: true,
-      message: "Database connection successful",
-      result,
-    })
+    if (result.success) {
+      console.log("Database connection successful:", result.result)
+      return NextResponse.json({
+        success: true,
+        message: "Database connection successful",
+        result: result.result,
+      })
+    } else {
+      console.error("Database connection failed:", result.error)
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Database connection failed",
+          error: result.error || "Unknown error",
+          stack: result.stack,
+        },
+        { status: 500 },
+      )
+    }
   } catch (error: any) {
     console.error("Database connection test failed:", error)
 
@@ -28,6 +33,7 @@ export async function GET() {
         success: false,
         message: "Database connection failed",
         error: error.message || "Unknown error",
+        stack: error.stack,
       },
       { status: 500 },
     )

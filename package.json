@@ -86,6 +86,8 @@
     "sql.js": "latest",
     "sqlite3": "latest",
     "drizzle-orm": "latest",
+    "stripe": "latest",
+    "drizzle-kit": "latest",
     "bcryptjs": "latest",
     "jose": "latest"
   },
