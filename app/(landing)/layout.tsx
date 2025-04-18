@@ -2,8 +2,8 @@ import type React from "react"
 
 export default function LandingLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
-  return <>{children}</>
+}) {
+  return <div className="min-h-screen flex flex-col">{children}</div>
 }

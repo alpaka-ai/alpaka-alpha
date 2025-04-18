@@ -122,7 +122,7 @@ function Sidebar() {
   }
 
   return (
-    <aside className="hidden md:flex flex-col w-64 bg-[#FEFAE0] border-r border-gray-200 h-screen">
+    <aside className="hidden md:flex flex-col w-64 bg-[#FEFAE0] border-r border-gray-200 h-screen fixed left-0 top-0">
       <div className="p-4 flex justify-center">
         <Link href="/dashboard" className="flex items-center">
           <span className="text-xl font-bold text-[#606C38] font-heading">Alpaka</span>
@@ -200,7 +200,7 @@ function Header() {
   }
 
   return (
-    <header className="border-b border-gray-200 bg-white">
+    <header className="border-b border-gray-200 bg-white fixed top-0 right-0 left-64 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-end items-center">
         <div className="flex items-center">
           <button
@@ -297,12 +297,12 @@ export default function DashboardRootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <>
+    <div className="flex min-h-screen">
       <Sidebar />
-      <div className="flex flex-col flex-1 md:ml-64">
+      <div className="flex-1 md:ml-64">
         <Header />
-        <main className="flex-1 p-6">{children}</main>
+        <main className="pt-16 p-6">{children}</main>
       </div>
-    </>
+    </div>
   )
 }
