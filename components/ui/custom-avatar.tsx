@@ -40,7 +40,7 @@ export function CustomAvatar({ name, email, imageUrl, size = "md", showLeafIcon 
   return (
     <div className="relative">
       <Avatar className={`border-2 border-[#DDA15E] ${sizeClasses[size]}`}>
-        <AvatarImage src={imageUrl || "/placeholder.svg"} alt={name} />
+        {imageUrl && <AvatarImage src={imageUrl || "/placeholder.svg"} alt={name} />}
         <AvatarFallback className="bg-[#FEFAE0] text-[#606C38] font-semibold">{getInitials()}</AvatarFallback>
       </Avatar>
 

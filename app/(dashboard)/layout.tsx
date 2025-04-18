@@ -111,7 +111,7 @@ function Sidebar() {
 
   return (
     <aside className="hidden md:flex flex-col w-64 bg-[#FEFAE0] border-r border-gray-200 h-screen">
-      <div className="p-4">
+      <div className="p-4 flex justify-center">
         <Link href="/dashboard" className="flex items-center">
           <span className="text-xl font-bold text-[#606C38] font-heading">Alpaka</span>
         </Link>
