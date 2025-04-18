@@ -1,12 +1,9 @@
 "use client"
 
-import { DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-
 import type React from "react"
 
 import Link from "next/link"
 import { use, useState, Suspense } from "react"
-import { Button } from "@/components/ui/button"
 import {
   Home,
   LogOut,
@@ -26,6 +23,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuGroup,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useUser } from "@/lib/auth/index"
 import { signOut } from "@/app/(login)/actions"
@@ -45,16 +43,7 @@ function UserMenu() {
   }
 
   if (!user) {
-    return (
-      <>
-        <Link href="/pricing" className="text-sm font-medium text-gray-700 hover:text-gray-900">
-          Pricing
-        </Link>
-        <Button asChild className="rounded-full">
-          <Link href="/sign-up">Sign Up</Link>
-        </Button>
-      </>
-    )
+    return null
   }
 
   return (
@@ -200,7 +189,7 @@ function Header() {
   }
 
   return (
-    <header className="border-b border-gray-200 bg-white fixed top-0 right-0 left-64 z-10">
+    <header className="border-b border-gray-200 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-end items-center">
         <div className="flex items-center">
           <button
@@ -297,11 +286,11 @@ export default function DashboardRootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen bg-white">
       <Sidebar />
-      <div className="flex-1 md:ml-64">
+      <div className="flex-1 flex flex-col md:ml-64">
         <Header />
-        <main className="pt-16 p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-6">{children}</main>
       </div>
     </div>
   )

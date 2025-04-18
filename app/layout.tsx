@@ -1,33 +1,34 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { chauPhilomeneOne, notoSans } from "./fonts"
 import "./globals.css"
+import type { Metadata, Viewport } from "next"
+import { Manrope } from "next/font/google"
+import { UserProvider } from "@/lib/auth"
+import { getUser } from "@/lib/db/queries"
 
 export const metadata: Metadata = {
   title: "Alpaka - Carbon Emission Management",
-  description: "Measure, trace, and reduce carbon emissions across your real estate portfolio",
-  icons: {
-    icon: [{ url: "/favicon.ico", type: "image/x-icon" }],
-    shortcut: [{ url: "/favicon.ico", type: "image/x-icon" }],
-    apple: null,
-    other: null,
-  },
+  description: "Measure, trace, and reduce Scope 3 carbon emissions across your property supply chains.",
     generator: 'v0.dev'
 }
 
+export const viewport: Viewport = {
+  maximumScale: 1,
+}
+
+const manrope = Manrope({ subsets: ["latin"] })
+
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
+  const userPromise = getUser()
+
   return (
-    <html lang="en" className={`${chauPhilomeneOne.variable} ${notoSans.variable}`}>
-      <head>
-        {/* Force favicon refresh by adding a version parameter */}
-        <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon" />
-        <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" />
-      </head>
-      <body className={notoSans.className}>{children}</body>
+    <html lang="en" className={`bg-white dark:bg-gray-950 text-black dark:text-white ${manrope.className}`}>
+      <body className="min-h-[100dvh] bg-gray-50">
+        <UserProvider userPromise={userPromise}>{children}</UserProvider>
+      </body>
     </html>
   )
 }
