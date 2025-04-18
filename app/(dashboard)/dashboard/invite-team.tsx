@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Loader2, PlusCircle } from "lucide-react"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/custom-radio-group"
 import { Label } from "@/components/ui/label"
 import { use, useActionState } from "react"
 import { inviteTeamMember } from "@/app/(login)/actions"
@@ -40,14 +40,12 @@ export function InviteTeamMember() {
           <div>
             <Label>Role</Label>
             <RadioGroup defaultValue="member" name="role" className="flex space-x-4" disabled={!isOwner}>
-              <div className="flex items-center space-x-2 mt-2">
-                <RadioGroupItem value="member" id="member" />
+              <RadioGroupItem value="member" id="member">
                 <Label htmlFor="member">Member</Label>
-              </div>
-              <div className="flex items-center space-x-2 mt-2">
-                <RadioGroupItem value="owner" id="owner" />
+              </RadioGroupItem>
+              <RadioGroupItem value="owner" id="owner">
                 <Label htmlFor="owner">Owner</Label>
-              </div>
+              </RadioGroupItem>
             </RadioGroup>
           </div>
           {inviteState?.error && <p className="text-red-500">{inviteState.error}</p>}
