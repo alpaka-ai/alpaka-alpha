@@ -5,7 +5,17 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
-export function LandingHeader({ getAppUrl }: { getAppUrl: (path: string) => string }) {
+type AppUrls = {
+  signIn: string
+  signUp: string
+  dashboard: string
+  vendors: string
+  reductionOpportunities: string
+  projectExecutions: string
+  vendorEngagements: string
+}
+
+export function LandingHeader({ appUrls }: { appUrls: AppUrls }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
@@ -30,10 +40,10 @@ export function LandingHeader({ getAppUrl }: { getAppUrl: (path: string) => stri
         </nav>
         <div className="hidden md:flex gap-4">
           <Button asChild variant="outline" className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10">
-            <a href={getAppUrl("/sign-in")}>Sign In</a>
+            <a href={appUrls.signIn}>Sign In</a>
           </Button>
           <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white">
-            <a href={getAppUrl("/sign-up")}>Create Account</a>
+            <a href={appUrls.signUp}>Create Account</a>
           </Button>
         </div>
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
@@ -61,10 +71,10 @@ export function LandingHeader({ getAppUrl }: { getAppUrl: (path: string) => stri
                 variant="outline"
                 className="border-[#DDA15E] text-[#DDA15E] hover:bg-[#DDA15E]/10 w-full"
               >
-                <a href={getAppUrl("/sign-in")}>Sign In</a>
+                <a href={appUrls.signIn}>Sign In</a>
               </Button>
               <Button asChild className="bg-[#606C38] hover:bg-[#4d5a2d] text-white w-full">
-                <a href={getAppUrl("/sign-up")}>Create Account</a>
+                <a href={appUrls.signUp}>Create Account</a>
               </Button>
             </div>
           </nav>
