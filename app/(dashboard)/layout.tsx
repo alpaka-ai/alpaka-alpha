@@ -4,7 +4,19 @@ import type React from "react"
 
 import Link from "next/link"
 import { use, useState, Suspense } from "react"
-import { Home, LogOut, MessageSquare, Lightbulb, Settings, Shield, Activity, Users, ClipboardList } from "lucide-react"
+import {
+  Home,
+  LogOut,
+  MessageSquare,
+  Lightbulb,
+  Menu,
+  X,
+  Settings,
+  Shield,
+  Activity,
+  Users,
+  ClipboardList,
+} from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -168,6 +180,21 @@ function Sidebar() {
   )
 }
 
+function MobileMenuButton({
+  isMobileMenuOpen,
+  setIsMobileMenuOpen,
+}: { isMobileMenuOpen: boolean; setIsMobileMenuOpen: (open: boolean) => void }) {
+  return (
+    <button
+      className="md:hidden flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
+      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      aria-label="Toggle menu"
+    >
+      {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+    </button>
+  )
+}
+
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
@@ -177,8 +204,14 @@ function Header() {
   }
 
   return (
-    <header className="bg-white border-b border-gray-200 fixed top-0 right-0 left-64 z-10">
-      <div className="h-16 px-6 flex items-center justify-end">
+    <header className="bg-white border-b border-gray-200 fixed top-0 right-0 left-64 z-10 h-16">
+      <div className="px-6 h-full flex items-center justify-between">
+        <div className="md:hidden flex items-center">
+          <MobileMenuButton isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+          <Link href="/dashboard" className="ml-2 flex items-center">
+            <span className="text-xl font-bold text-[#606C38] font-heading">Alpaka</span>
+          </Link>
+        </div>
         <div className="flex items-center space-x-4">
           <Suspense fallback={<div className="h-9 w-9 rounded-full bg-gray-200 animate-pulse" />}>
             <UserMenu />
@@ -259,7 +292,7 @@ function Header() {
   )
 }
 
-export default function DashboardRootLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
