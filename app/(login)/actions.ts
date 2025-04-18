@@ -16,7 +16,7 @@ import {
   ActivityType,
   invitations,
 } from "@/lib/db/schema"
-import { comparePasswords, hashPassword, setSession } from "@/lib/auth/session"
+import { comparePasswords, hashPassword, setSession, clearSession } from "@/lib/auth/session"
 import { redirect } from "next/navigation"
 import { cookies } from "next/headers"
 import { createCheckoutSession } from "@/lib/payments/stripe"
@@ -44,46 +44,54 @@ const signInSchema = z.object({
 export const signIn = validatedAction(signInSchema, async (data, formData) => {
   const { email, password } = data
 
-  const userWithTeam = await db
-    .select({
-      user: users,
-      team: teams,
-    })
-    .from(users)
-    .leftJoin(teamMembers, eq(users.id, teamMembers.userId))
-    .leftJoin(teams, eq(teamMembers.teamId, teams.id))
-    .where(eq(users.email, email))
-    .limit(1)
+  try {
+    const userWithTeam = await db
+      .select({
+        user: users,
+        team: teams,
+      })
+      .from(users)
+      .leftJoin(teamMembers, eq(users.id, teamMembers.userId))
+      .leftJoin(teams, eq(teamMembers.teamId, teams.id))
+      .where(eq(users.email, email))
+      .limit(1)
 
-  if (userWithTeam.length === 0) {
+    if (userWithTeam.length === 0) {
+      return {
+        error: "Invalid email or password. Please try again.",
+        email,
+        password,
+      }
+    }
+
+    const { user: foundUser, team: foundTeam } = userWithTeam[0]
+
+    const isPasswordValid = await comparePasswords(password, foundUser.passwordHash)
+
+    if (!isPasswordValid) {
+      return {
+        error: "Invalid email or password. Please try again.",
+        email,
+        password,
+      }
+    }
+
+    await Promise.all([setSession(foundUser), logActivity(foundTeam?.id, foundUser.id, ActivityType.SIGN_IN)])
+
+    const redirectTo = formData.get("redirect") as string | null
+    if (redirectTo === "checkout") {
+      const priceId = formData.get("priceId") as string
+      return createCheckoutSession({ team: foundTeam, priceId })
+    }
+
+    redirect("/dashboard")
+  } catch (error) {
+    console.error("Sign in error:", error)
     return {
-      error: "Invalid email or password. Please try again.",
+      error: "An error occurred during sign in. Please try again.",
       email,
-      password,
     }
   }
-
-  const { user: foundUser, team: foundTeam } = userWithTeam[0]
-
-  const isPasswordValid = await comparePasswords(password, foundUser.passwordHash)
-
-  if (!isPasswordValid) {
-    return {
-      error: "Invalid email or password. Please try again.",
-      email,
-      password,
-    }
-  }
-
-  await Promise.all([setSession(foundUser), logActivity(foundTeam?.id, foundUser.id, ActivityType.SIGN_IN)])
-
-  const redirectTo = formData.get("redirect") as string | null
-  if (redirectTo === "checkout") {
-    const priceId = formData.get("priceId") as string
-    return createCheckoutSession({ team: foundTeam, priceId })
-  }
-
-  redirect("/dashboard")
 })
 
 const signUpSchema = z.object({
@@ -195,10 +203,16 @@ export const signUp = validatedAction(signUpSchema, async (data, formData) => {
 })
 
 export async function signOut() {
-  const user = (await getUser()) as User
-  const userWithTeam = await getUserWithTeam(user.id)
-  await logActivity(userWithTeam?.teamId, user.id, ActivityType.SIGN_OUT)
-  ;(await cookies()).delete("session")
+  try {
+    const user = (await getUser()) as User
+    if (user) {
+      const userWithTeam = await getUserWithTeam(user.id)
+      await logActivity(userWithTeam?.teamId, user.id, ActivityType.SIGN_OUT)
+    }
+    await clearSession()
+  } catch (error) {
+    console.error("Sign out error:", error)
+  }
 }
 
 const updatePasswordSchema = z

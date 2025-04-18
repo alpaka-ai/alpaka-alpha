@@ -189,8 +189,13 @@ function Header() {
   }
 
   return (
-    <header className="border-b border-gray-200 bg-white fixed top-0 right-0 left-64 z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-end items-center">
+    <header className="border-b border-gray-200 bg-white fixed top-0 right-0 left-0 md:left-64 z-10 h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex justify-between items-center">
+        <div className="md:hidden">
+          <Link href="/dashboard" className="flex items-center">
+            <span className="text-xl font-bold text-[#606C38] font-heading">Alpaka</span>
+          </Link>
+        </div>
         <div className="flex items-center">
           <button
             className="md:hidden mr-2"
@@ -201,7 +206,7 @@ function Header() {
           </button>
         </div>
         <div className="flex items-center space-x-4">
-          <Suspense fallback={<div className="h-9" />}>
+          <Suspense fallback={<div className="h-9 w-9 rounded-full bg-gray-200 animate-pulse" />}>
             <UserMenu />
           </Suspense>
         </div>
@@ -209,7 +214,7 @@ function Header() {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200">
+        <div className="md:hidden border-t border-gray-200 absolute w-full bg-white shadow-lg">
           <nav className="flex flex-col p-4 space-y-2">
             <Link
               href="/dashboard"
@@ -286,7 +291,7 @@ export default function DashboardRootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
       <div className="flex-1 md:ml-64">
         <Header />
