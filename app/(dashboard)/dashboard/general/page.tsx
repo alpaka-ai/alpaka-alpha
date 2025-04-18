@@ -69,7 +69,7 @@ export default function GeneralPage() {
             </div>
             {state.error && <p className="text-red-500 text-sm">{state.error}</p>}
             {state.success && <p className="text-green-500 text-sm">{state.success}</p>}
-            <Button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white" disabled={isPending}>
+            <Button type="submit" className="bg-[#606C38] hover:bg-[#4d5a2d] text-white" disabled={isPending}>
               {isPending ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

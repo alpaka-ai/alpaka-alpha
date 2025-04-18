@@ -99,7 +99,7 @@ export default function SecurityPage() {
             </div>
             {passwordState.error && <p className="text-red-500 text-sm">{passwordState.error}</p>}
             {passwordState.success && <p className="text-green-500 text-sm">{passwordState.success}</p>}
-            <Button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white" disabled={isPasswordPending}>
+            <Button type="submit" className="bg-[#606C38] hover:bg-[#4d5a2d] text-white" disabled={isPasswordPending}>
               {isPasswordPending ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
