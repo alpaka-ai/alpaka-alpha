@@ -3,10 +3,14 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ChevronRight, BarChart3, Users, Lightbulb } from "lucide-react"
+import { LandingHeader } from "@/components/landing-header"
+import { LandingFooter } from "@/components/landing-footer"
 
 export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen">
+      <LandingHeader />
+
       {/* Hero Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-[#FEFAE0]">
         <div className="container px-4 md:px-6">
@@ -181,6 +185,8 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <LandingFooter />
     </div>
   )
 }
