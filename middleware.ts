@@ -5,7 +5,28 @@ export async function middleware(request: NextRequest) {
   try {
     const { pathname, search } = request.nextUrl
     const hostname = request.headers.get("host") || ""
+    const isPreview = process.env.VERCEL_ENV === "preview" || !process.env.VERCEL_ENV
 
+    // In preview environments, don't do subdomain routing
+    if (isPreview) {
+      // Check for session cookie
+      const sessionCookie = request.cookies.get("session")
+      const isAuthenticated = !!sessionCookie?.value
+
+      // Redirect authenticated users away from auth routes
+      if (isAuthenticated && (pathname === "/sign-in" || pathname === "/sign-up")) {
+        return NextResponse.redirect(new URL("/dashboard", request.url))
+      }
+
+      // Redirect unauthenticated users away from protected routes
+      if (!isAuthenticated && pathname.startsWith("/dashboard")) {
+        return NextResponse.redirect(new URL(`/sign-in?redirect=${pathname}`, request.url))
+      }
+
+      return NextResponse.next()
+    }
+
+    // Production environment logic below
     // Check if we're on the app subdomain
     const isAppDomain = hostname.startsWith("app.") || hostname.includes("localhost")
 

@@ -8,12 +8,16 @@ import { LandingFooter } from "@/components/landing-footer"
 export default function LandingPage() {
   // Helper function to get the app URL
   const getAppUrl = (path: string) => {
-    // In production, use app.alpaka.ai
-    // In development, use localhost:3000
-    const baseUrl =
-      process.env.NODE_ENV === "production" ? "https://app.alpaka.ai" : process.env.BASE_URL || "http://localhost:3000"
+    // In preview environments, use relative URLs
+    // In production, use the subdomain
+    const isPreview = process.env.VERCEL_ENV === "preview" || !process.env.VERCEL_ENV
 
-    return `${baseUrl}${path}`
+    if (isPreview) {
+      return path // Use relative URLs in preview
+    } else {
+      // In production, use app.alpaka.ai
+      return `https://app.alpaka.ai${path}`
+    }
   }
 
   return (

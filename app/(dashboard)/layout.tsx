@@ -31,6 +31,8 @@ import { useUser } from "@/lib/auth/index"
 import { signOut } from "@/app/(login)/actions"
 import { useRouter, usePathname } from "next/navigation"
 import { CustomAvatar } from "@/components/ui/custom-avatar"
+import { Providers } from "../providers"
+import { getUser } from "@/lib/db/queries"
 
 function UserMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -291,21 +293,20 @@ function Header() {
   )
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <div className="md:hidden">
-        <Header />
-      </div>
-      <div className="flex flex-1">
-        <Sidebar />
-        <main className="flex-1 overflow-auto">
-          <div className="hidden md:block">
-            <Header />
-          </div>
-          <div className="p-6">{children}</div>
-        </main>
-      </div>
-    </div>
-  )
+export default async function DashboardRootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  // Wrap the database call in a try/catch to handle potential errors
+  let userPromise: Promise<any> = Promise.resolve(null)
+
+  try {
+    userPromise = getUser()
+  } catch (error) {
+    console.error("Error getting user:", error)
+    userPromise = Promise.resolve(null)
+  }
+
+  return <Providers userPromise={userPromise}>{children}</Providers>
 }
