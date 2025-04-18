@@ -1,8 +1,16 @@
+"use client"
+
 import type React from "react"
-export default function DashboardContentLayout({
+
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return (
+    <div className="flex flex-col min-h-[calc(100dvh-68px)] max-w-7xl mx-auto w-full">
+      {/* Main content */}
+      <main className="flex-1 overflow-y-auto">{children}</main>
+    </div>
+  )
 }

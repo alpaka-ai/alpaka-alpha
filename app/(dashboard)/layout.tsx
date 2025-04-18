@@ -48,7 +48,7 @@ function UserMenu() {
 
   return (
     <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-      <DropdownMenuTrigger className="outline-none">
+      <DropdownMenuTrigger>
         <CustomAvatar name={user?.name || ""} email={user?.email || ""} size="md" showLeafIcon={true} />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
@@ -180,21 +180,6 @@ function Sidebar() {
   )
 }
 
-function MobileMenuButton({
-  isMobileMenuOpen,
-  setIsMobileMenuOpen,
-}: { isMobileMenuOpen: boolean; setIsMobileMenuOpen: (open: boolean) => void }) {
-  return (
-    <button
-      className="md:hidden flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
-      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-      aria-label="Toggle menu"
-    >
-      {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-    </button>
-  )
-}
-
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
@@ -204,16 +189,19 @@ function Header() {
   }
 
   return (
-    <header className="bg-white border-b border-gray-200 fixed top-0 right-0 left-64 z-10 h-16">
-      <div className="px-6 h-full flex items-center justify-between">
-        <div className="md:hidden flex items-center">
-          <MobileMenuButton isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
-          <Link href="/dashboard" className="ml-2 flex items-center">
-            <span className="text-xl font-bold text-[#606C38] font-heading">Alpaka</span>
-          </Link>
+    <header className="border-b border-gray-200 bg-white fixed top-0 right-0 left-64 z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-end items-center">
+        <div className="flex items-center">
+          <button
+            className="md:hidden mr-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
         <div className="flex items-center space-x-4">
-          <Suspense fallback={<div className="h-9 w-9 rounded-full bg-gray-200 animate-pulse" />}>
+          <Suspense fallback={<div className="h-9" />}>
             <UserMenu />
           </Suspense>
         </div>
@@ -221,7 +209,7 @@ function Header() {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 absolute w-full bg-white shadow-lg">
+        <div className="md:hidden border-t border-gray-200">
           <nav className="flex flex-col p-4 space-y-2">
             <Link
               href="/dashboard"
@@ -292,13 +280,13 @@ function Header() {
   )
 }
 
-export default function DashboardLayout({
+export default function DashboardRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen">
       <Sidebar />
       <div className="flex-1 md:ml-64">
         <Header />
