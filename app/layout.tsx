@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   title: "Alpaka - Carbon Emission Management",
   description: "Measure, trace, and reduce carbon emissions across your real estate portfolio",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.svg",
+    icon: "/favicon.ico", // Ensure we're using the .ico file
+    shortcut: "/favicon.ico", // Also use .ico for shortcut icon
   },
     generator: 'v0.dev'
 }
