@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button"
 import { Home, LogOut, BarChart2, Users, Target, Lightbulb, Menu, X } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useUser } from "@/lib/auth"
+import { useUser } from "@/lib/auth/index"
 import { signOut } from "@/app/(login)/actions"
 import { useRouter, usePathname } from "next/navigation"
 
 function UserMenu() {
-  const [isMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { userPromise } = useUser()
   const user = use(userPromise)
   const router = useRouter()
@@ -38,7 +38,7 @@ function UserMenu() {
   }
 
   return (
-    <DropdownMenu open={isMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+    <DropdownMenu open={isMenuOpen} onOpenChange={setIsMenuOpen}>
       <DropdownMenuTrigger>
         <Avatar className="cursor-pointer h-9 w-9">
           <AvatarImage alt={user.name || ""} />

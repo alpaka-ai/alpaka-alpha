@@ -4,7 +4,7 @@ import { use } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { BarChart2, Users, Target, Lightbulb } from "lucide-react"
 import Link from "next/link"
-import { useUser } from "@/lib/auth"
+import { useUser } from "@/lib/auth/index"
 
 export default function DashboardPage() {
   const { userPromise } = useUser()
